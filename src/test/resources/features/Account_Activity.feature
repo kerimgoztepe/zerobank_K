@@ -1,4 +1,4 @@
-@wip
+
 Feature: Account Activity
 
   Background:

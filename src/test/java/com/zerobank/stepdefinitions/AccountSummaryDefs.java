@@ -13,7 +13,7 @@ import java.util.Set;
 
 public class AccountSummaryDefs {
 
-   /* @Then("the system should display following account types")
+    @Then("the system should display following account types")
     public void the_system_should_display_following_account_types(List<String> accountTypes) {
         List<String> actualAccountTypes = BrowserUtils.getElementsText(new AccountSummaryPage().accountTypes);
         System.out.println("actualAccountTypes = " + actualAccountTypes);
@@ -28,8 +28,8 @@ public class AccountSummaryDefs {
 
     }
 
-    */
 
+/*
     @Then("the system should display following account types {string}")
     public void the_system_should_display_following_account_types(String accountType, DataTable dataTable) {
         List<Map<String, String>> maps = dataTable.asMaps(String.class, String.class);
@@ -57,6 +57,8 @@ public class AccountSummaryDefs {
 
         Assert.assertEquals(expectedColumnNames,actualColumnNames);
     }
+
+ */
 
 
 

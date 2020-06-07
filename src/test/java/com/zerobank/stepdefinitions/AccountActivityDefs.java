@@ -16,6 +16,8 @@ public class AccountActivityDefs {
        new AccountActivityPage().navigateToTab(tabName);
     }
 
+
+
     @Then("the account dropdown default option should be {string}")
     public void the_account_dropdown_default_option_should_be(String defaultOption) {
         AccountActivityPage accountActivityPage = new AccountActivityPage();

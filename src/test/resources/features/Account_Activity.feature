@@ -7,7 +7,7 @@ Feature: Account Activity
     When the user clicks "Account Activity" tab
 
   Scenario: Account activity title
-    Then  The page title should be "Zero - Account Activity"
+    Then The page title should be "Zero - Account Activity"
 
   Scenario: Default option of account dropdown
     Then the account dropdown default option should be "Savings"

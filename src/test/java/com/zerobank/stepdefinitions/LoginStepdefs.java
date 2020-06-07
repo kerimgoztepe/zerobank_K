@@ -19,7 +19,7 @@ public class LoginStepdefs {
     }
 
     @Then("The page title should be {string}")
-    public void the_page_title_should_be(String expectedTitle) {
+    public void The_page_title_should_be(String expectedTitle) {
         String actualTitle = Driver.get().getTitle();
         System.out.println("actualTitle = " + actualTitle);
         Assert.assertEquals("Verify the title", actualTitle, expectedTitle);

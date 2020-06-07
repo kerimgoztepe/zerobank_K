@@ -13,6 +13,8 @@ public class Hooks {
     @Before
     public void setUp(){
 
+        Driver.get().manage().window().maximize();
+
         System.out.println("\tThis is coming from BEFORE");
     }
 

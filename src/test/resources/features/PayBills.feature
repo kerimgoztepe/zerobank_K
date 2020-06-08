@@ -12,7 +12,6 @@ Feature: Pay Bills
     And the user fills the necessary places and clicks pay
     Then the system should display "The payment was successfully submitted."
 
-
   Scenario Outline: Pay operation with <testType>
     And the user enters "<amount>" and "<date>"
     Then the system should display message "Please fill out this field."
@@ -22,7 +21,7 @@ Feature: Pay Bills
       | empty amount        |           | 2020-09-10 |
       | empty date          | 2550      |            |
       | alphabetical amount | somewords | 2020-09-10 |
-      | special char amont  | #$%&      | 2020-09-10 |
+      | special char amount | #$%&      | 2020-09-10 |
       | alphabetical date   | 3750      | somewords  |
 
 

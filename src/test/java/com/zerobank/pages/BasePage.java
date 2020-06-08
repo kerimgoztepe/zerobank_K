@@ -1,6 +1,7 @@
 package com.zerobank.pages;
 
 import com.zerobank.utilities.Driver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -43,11 +44,16 @@ public abstract class  BasePage {
         }
     }
 
+    public void navigateToSubTab(String subTabName){
+        Driver.get().findElement(By.partialLinkText(subTabName)).click();
+    }
+
     public Select getSelectObject(WebElement element){
         return new Select(element);
     }
 
     public String getPageTitle(){
+
         return Driver.get().getTitle();
     }
 

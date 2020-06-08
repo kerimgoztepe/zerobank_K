@@ -32,15 +32,10 @@ public class LoginPage extends HomePage{
 
     public void loginInvalid(String username, String password){
 
-        BrowserUtils.waitFor(1);
         signinBtn.click();
-        BrowserUtils.waitFor(1);
         usernameInput.sendKeys(username);
-        BrowserUtils.waitFor(1);
         passwordInput.sendKeys(password);
-        BrowserUtils.waitFor(1);
         rememberMe.click();
-        BrowserUtils.waitFor(1);
         submitBtn.click();
     }
 

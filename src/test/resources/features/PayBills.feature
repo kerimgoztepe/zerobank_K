@@ -8,32 +8,23 @@ Feature: Pay Bills
   Scenario: Checking the page title
     Then The page title should be "Zero - Pay Bills"
 
-
   Scenario: Successful pay operation
     And the user fills the necessary places and clicks pay
     Then the system should display "The payment was successfully submitted."
 
-  Scenario: Pay operation with an empty amount value
-    And the user leaves empty the amount box
+
+  Scenario Outline: Pay operation with <testType>
+    And the user enters "<amount>" and "<date>"
     Then the system should display message "Please fill out this field."
 
-  Scenario: Pay operation with an empty date value
-    And the user leaves empty the date box
-    Then the system should display message "Please fill out this field."
+    Examples:
+      | testType            | amount    | date       |
+      | empty amount        |           | 2020-09-10 |
+      | empty date          | 2550      |            |
+      | alphabetical amount | somewords | 2020-09-10 |
+      | special char amont  | #$%&      | 2020-09-10 |
+      | alphabetical date   | 3750      | somewords  |
 
-  @wip
-  Scenario: Pay operation with invalid amount value
-    And the user enters alphabetical characters to amountbox
-    Then the system should display message "Please fill out this field."
-
-  @wip
-  Scenario: Pay operation with invalid amount value
-    And the user enters special characters to amountbox
-    Then the system should display message "Please fill out this field."
-  @wip
-  Scenario: Pay operation with invalid date value
-    And the user enters alphabetical characters to date box
-    Then the system should display message "Please fill out this field."
 
 
   #Scenario: Pay operation with invalid amount values

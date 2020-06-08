@@ -47,6 +47,10 @@ public abstract class  BasePage {
         return new Select(element);
     }
 
+    public String getPageTitle(){
+        return Driver.get().getTitle();
+    }
+
 
 
 }

@@ -12,6 +12,7 @@ Feature: Account Activity
   Scenario: Default option of account dropdown
     Then the account dropdown default option should be "Savings"
 
+# here is the bug
   Scenario: Account dropdown options
     Then the account dropdown should have
       | Savings     |

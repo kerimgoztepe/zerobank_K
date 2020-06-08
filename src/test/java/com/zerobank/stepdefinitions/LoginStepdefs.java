@@ -25,7 +25,7 @@ public class LoginStepdefs {
         Assert.assertEquals("Verify the title", actualTitle, expectedTitle);
     }
 
-    @When("the user logs in with blank username or password")
+    /*@When("the user logs in with blank username or password")
     public void the_user_logs_in_with_blank_username_or_password() {
         new LoginPage().loginInvalid(" ", " ");
     }
@@ -34,6 +34,14 @@ public class LoginStepdefs {
     public void the_user_logs_in_with(String username, String password) {
         new LoginPage().loginInvalid(username,password);
     }
+
+     */
+
+    @When("the user logs in with invalid {string} or {string}")
+    public void the_user_logs_in_with_invalid_or(String username, String password) {
+        new LoginPage().loginInvalid(username,password);
+    }
+
 
     @Then("the system should display error message {string}")
     public void the_system_should_display_error_message(String expectedMessage) {

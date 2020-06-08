@@ -16,10 +16,15 @@ public class AccountSummaryPage extends BasePage{
     @FindBy(xpath = "//h2[contains(text(),'Credit Accounts')]//following-sibling::div[1]//thead")
     public List<WebElement> creditAccountsColumns;
 
+
+
     public List<String> getColumnNames (String accountType){
         String xpath = "//h2[contains(text(),'" +accountType+ "')]//following-sibling::div[1]//th";
-
         return BrowserUtils.getElementsText(By.xpath(xpath));
+    }
+
+    public void clickAccountLink (String columnName){
+        Driver.get().findElement(By.xpath("//a[text()='"+ columnName + "']")).click();
     }
 
 

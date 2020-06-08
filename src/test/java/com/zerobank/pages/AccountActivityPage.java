@@ -16,5 +16,15 @@ public class AccountActivityPage extends  BasePage {
 
 
 
+    public WebElement getSelectedOption(){
+        return new Select(accountDropdown).getFirstSelectedOption();
+    }
+
+
+
+
+
+
+
 
 }

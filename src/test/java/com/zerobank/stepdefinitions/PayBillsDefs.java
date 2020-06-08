@@ -1,15 +1,9 @@
 package com.zerobank.stepdefinitions;
 
 import com.zerobank.pages.PayBillsPage;
-import com.zerobank.utilities.BrowserUtils;
 import com.zerobank.utilities.Driver;
-import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.*;
 import org.junit.Assert;
-import org.openqa.selenium.Alert;
-
-import java.util.List;
-import java.util.Map;
 
 public class PayBillsDefs {
 
@@ -34,17 +28,11 @@ public class PayBillsDefs {
 
     }
 
-    @When("the user leaves empty the amount box")
-    public void the_user_leaves_empty_the_amount_box() {
+    @When("the user enters {string} and {string}")
+    public void the_user_enters_and(String amount, String date) {
         PayBillsPage payBillsPage = new PayBillsPage();
-        payBillsPage.dateInputBox.sendKeys("2020-09-10");
-        payBillsPage.payBtn.click();
-    }
-
-    @When("the user leaves empty the date box")
-    public void the_user_leaves_empty_the_date_box() {
-        PayBillsPage payBillsPage = new PayBillsPage();
-        payBillsPage.ammountInputBox.sendKeys("2020");
+        payBillsPage.ammountInputBox.sendKeys(amount);
+        payBillsPage.dateInputBox.sendKeys(date);
         payBillsPage.payBtn.click();
     }
 
@@ -55,29 +43,13 @@ public class PayBillsDefs {
         Assert.assertEquals("Verify the message",expectedMessage,actualMessage);
     }
 
-    @When("the user enters alphabetical characters to amountbox")
-    public void the_user_enters_alphabetical_characters_to_amountbox() {
-        PayBillsPage payBillsPage = new PayBillsPage();
-        payBillsPage.ammountInputBox.sendKeys("Somewords");
-        payBillsPage.dateInputBox.sendKeys("2020-09-10");
-        payBillsPage.payBtn.click();
-    }
 
-    @When("the user enters special characters to amountbox")
-    public void the_user_enters_special_characters_to_amountbox() {
-        PayBillsPage payBillsPage = new PayBillsPage();
-        payBillsPage.ammountInputBox.sendKeys("##$$%%!!?¡");
-        payBillsPage.dateInputBox.sendKeys("2020-09-10");
-        payBillsPage.payBtn.click();
-    }
 
-    @When("the user enters alphabetical characters to date box")
-    public void the_user_enters_alphabetical_characters_to_date_box() {
-        PayBillsPage payBillsPage = new PayBillsPage();
-        payBillsPage.ammountInputBox.sendKeys("20500");
-        payBillsPage.dateInputBox.sendKeys("somewords");
-        payBillsPage.payBtn.click();
-    }
+
+
+
+
+
 
 
 

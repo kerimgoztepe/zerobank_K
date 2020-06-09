@@ -1,5 +1,6 @@
 package com.zerobank.pages;
 
+import com.zerobank.utilities.BrowserUtils;
 import com.zerobank.utilities.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -39,6 +40,7 @@ public abstract class  BasePage {
         for (WebElement tab : navigationTabs) {
             if(tab.getText().equals(tabName)){
                 tab.click();
+                BrowserUtils.waitFor(1);
                 break;
             }
         }
@@ -46,6 +48,7 @@ public abstract class  BasePage {
 
     public void navigateToSubTab(String subTabName){
         Driver.get().findElement(By.partialLinkText(subTabName)).click();
+        BrowserUtils.waitFor(1);
     }
 
     public Select getSelectObject(WebElement element){

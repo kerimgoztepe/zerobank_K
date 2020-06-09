@@ -4,11 +4,13 @@ import com.zerobank.pages.AccountActivityPage;
 import com.zerobank.utilities.BrowserUtils;
 import io.cucumber.java.en.*;
 import org.junit.Assert;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.ui.Select;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -85,8 +87,79 @@ public class AccountActivityDefs {
     public void the_results_should_be_sorted_by_most_recent_date() {
 
         List<String> actualDates = new AccountActivityPage().getTableDates();
+        List<Integer> dates = new ArrayList<>();
+        for (String actualDate : actualDates) {
+            dates.add(Integer.valueOf(actualDate.replace("-","")));
+        }
+
+        for (int i = 0; i < dates.size()-1; i++) {
+             Assert.assertTrue("Verify the most recent is at top",dates.get(i)>dates.get(i+1));
+        }
+    }
+
+    @Then("the results should not contain the date {string}")
+    public void the_results_should_not_contain_the_date(String date) {
+
+        List<String> actualDates = new AccountActivityPage().getTableDates();
+
+        Assert.assertTrue("Verify that date is not in the list ", !actualDates.contains(date));
 
     }
+
+    @When("the user enters description {string} and clicks search")
+    public void the_user_enters_description_and_clicks_search(String descriptionText) {
+        AccountActivityPage accountActivityPage = new AccountActivityPage();
+        BrowserUtils.waitForClickablility(accountActivityPage.descriptionBox,2);
+        accountActivityPage.descriptionBox.sendKeys(Keys.CONTROL+"a"+Keys.DELETE);
+        accountActivityPage.descriptionBox.sendKeys(descriptionText);
+        accountActivityPage.searchBtn.click();
+
+    }
+
+    @Then("the results should contain {string}")
+    public void the_results_should_contain(String descriptionText) {
+        AccountActivityPage accountActivityPage = new AccountActivityPage();
+        List<String> tableDescriptions = accountActivityPage.getTableDescriptions();
+        for (String tableDescription : tableDescriptions) {
+            Assert.assertTrue("Verify the description text", tableDescription.contains(descriptionText));
+        }
+    }
+
+    @Then("the results should not contain {string}")
+    public void the_results_should_not_contain(String descriptionText) {
+        AccountActivityPage accountActivityPage = new AccountActivityPage();
+        List<String> tableDescriptions = accountActivityPage.getTableDescriptions();
+        for (String tableDescription : tableDescriptions) {
+            Assert.assertTrue("Verify the description text", !tableDescription.contains(descriptionText));
+        }
+    }
+
+    @When("the user clicks search")
+    public void the_user_clicks_search() {
+        BrowserUtils.waitForClickablility(new AccountActivityPage().searchBtn,3);
+        new AccountActivityPage().searchBtn.click();
+        BrowserUtils.waitFor(3);
+    }
+
+    @Then("the results should contain a result under Deposit")
+    public void the_results_should_contain_a_result_under_Deposit() {
+        List<String> tableDeposits = new AccountActivityPage().getTableDeposits();
+        Assert.assertTrue("Verify that there is deposit data", tableDeposits.size()!=0);
+    }
+
+    @Then("the results should contain a result under Withdrawal")
+    public void the_results_should_contain_a_result_under_Withdrawal() {
+        List<String> tableWithdrawal = new AccountActivityPage().getTableWithdrawal();
+        Assert.assertTrue("Verify that there is deposit data", tableWithdrawal.size()!=0);
+    }
+
+    @When("the user selects type {string}")
+    public void the_user_selects_type(String typeOption) {
+        Select select = new Select(new AccountActivityPage().typeDropdown);
+        select.selectByVisibleText(typeOption);
+    }
+
+
 
 
 
